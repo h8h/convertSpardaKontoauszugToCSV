@@ -14,7 +14,7 @@ Abhängigkeiten
 --------------------
 Zum Umwandeln von PDF zu Text verwende ich:
 
-* [pdfminer](https://github.com/euske/pdfminer) 
+* [pdfminer](https://github.com/pdfminer/pdfminer.six/) 
 
 Dieser ist normalerweise in jeder Linux Distri mit an Board:
 
@@ -29,9 +29,9 @@ Installation
 Wenn die Abhängigkeit installiert ist, reicht eigentlich nur noch
 
 ```
-git clone
+git clone https://github.com/h8h/convertSpardaKontoauszugToCSV.git
 
-cd
+cd convertSpardaKontoauszugToCSV
 
 ./init.py kontoauszug.pdf
 
