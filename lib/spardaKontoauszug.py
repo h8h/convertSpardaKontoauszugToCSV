@@ -18,11 +18,7 @@ class spardaKontoauszugAlt(list):
     # xx,xx
     # xxx.xxx,xx
     # -xxx.xxx,xx
-    betragRegex = re.compile(r"^[0-9\.\-]+,[0-9][0-9]")
-
-    # Beim Seitenumbruch wird der Text Übertrag hinzugefuegt.
-    # Dieser wird bis zum Zeilenende entfernt
-    uebertragRegex = re.compile(r"\sÜbertrag.*?$")
+    betragRegex = re.compile(r"^([0-9\.\-]+,[0-9][0-9])")
 
     # So wie oben
     # Zusaetzlich wird noch ermittelt welche Version des Kontoauszug es ist
@@ -94,9 +90,12 @@ class spardaKontoauszugAlt(list):
                     
                     # Der Betrag entspricht den aktuellen Pointer der Schleife
                     # von diesem werden noch Textreste entfernt
-                    umsatz = re.sub(self.uebertragRegex, '' , currentText[10:])
-                    umsatz = re.sub(self.kontostandRegex, '', umsatz)
-                    umsatz = umsatz.rstrip()
+                    umsatz = re.match(self.betragRegex, currentText[10:])
+                    if umsatz:
+                        umsatz = umsatz.group(1)
+                    else:
+                        print("Error no Umsatz found {currentText}")
+                        continue
 
                     # Das Datum muesste an den ersten 10 Zeichen stehen
                     date = transactionText[:10]
