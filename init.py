@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from pdfminer.high_level import extract_text
+from lib.extractPdf2Text import extract_text
 from lib.spardaKontoauszug import spardaKontoauszugAlt, spardaKontoauszugNeu
 from lib.homebank import homebank
 import sys
